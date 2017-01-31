@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+    <title>scrollTracker.js Demo</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+  	<header class="site-header">
+  		<div class="page-width-wrap">
+  			<h1>scrollTracker.js Demo</h1>
+  		</div>
+  	</header>
+  	<main class="main">
+  		<div class="jump-to">
+	  		<p>Jump to an example:</p>
+	  		<ul>
+	  			<li><a href="#example1">Enter/Leave Viewport Example</a></li>
+	  			<li><a href="#example2">Offset Example</a></li>
+	  			<li><a href="#example3">Scroll Event Example</a></li>
+	  		</ul>
+	  	</div>
+
+
+		  	<div class="example" id="example1">
+		  		<h2 class="example__heading">Enter/Leave Viewport Example</h2>
+		  		<p>This example shows how to perform an action when a tracked element enters and leaves the viewport.</p>
+		  		<ul>
+			  		<li>When the element enters the viewport, the page background will turn blue.</li>
+			  		<li>When the element leaves the viewport, the page background will turn back to white.</li>
+		  		</ul>
+		  		<div class="code-wrap example__code-wrap">
+			  		<pre class="language-js"><code class="code">import scrollTracker from "DEGJS/scrollTracker";
+import eventAggregator from "DEGJS/eventAggregator";
+
+eventAggregator.subscribe('scrollTracker.elementInViewportChange', 
+	onElementInViewportChange);
+
+let elToTrack = document.querySelector('#example1-tracked-el');
+let scrollTrackerInst = scrollTracker();
+
+scrollTrackerInst.trackElement(elToTrack);
+
+function onElementInViewportChange(e) {
+	if(e.isInViewport) {
+		document.body.classList.add('blue');
+	} else {
+		document.body.classList.remove('blue');
+	}
+}
+</code></pre>
+				</div>
+				<p>Now, scroll down the page to bring the tracked element into the viewport.</p>
+		  	</div>
+
+		  	<div class="tracked-el" id="example1-tracked-el" data-example-index="1">Tracked element</div>
+
+		  	<div class="example" id="example2">
+		  		<h2 class="example__heading">Offset Example</h2>
+		  		<p>This example shows how to apply an offset in conjunction with a tracked element entering and leaving the viewport.</p>
+		  		<ul>
+		  			<li>When 50% or more of the element's height has entered the viewport, the page background will turn blue.</li>
+		  			<li>When 50% or more of the element's height has left the viewport, the page background will turn back to white.</li>
+		  		</ul>
+		  		<div class="code-wrap example__code-wrap">
+			  		<pre class="language-js"><code class="code">import scrollTracker from "DEGJS/scrollTracker";
+import eventAggregator from "DEGJS/eventAggregator";
+
+eventAggregator.subscribe('scrollTracker.elementInViewportChange', 
+	onElementInViewportChange);
+
+let elToTrack = document.querySelector('#example2-tracked-el');
+let scrollTrackerInst = scrollTracker();
+
+scrollTrackerInst.trackElement(elToTrack,
+	{
+		offset: {
+			top: "50%",
+			bottom: "50%"
+		}
+	}
+);
+
+function onElementInViewportChange(e) {
+	if(e.isInViewport) {
+		document.body.classList.add('blue');
+	} else {
+		document.body.classList.remove('blue');
+	}
+}
+</code></pre>
+				</div>
+				<p>Now, scroll down the page to bring the tracked element into the viewport.</p>
+		  	</div>
+
+		  	<div class="tracked-el tracked-el--tall" id="example2-tracked-el" data-example-index="2">Tracked element</div>
+
+		  	<div class="example" id="example3">
+		  		<h2 class="example__heading">Scroll Event Example</h2>
+		  		<p>This example shows how to perform an action when a scroll event occurs while a tracked element is within the viewport.</p>
+		  		<ul>
+		  			<li>The element's opacity increases as it nears the viewport's vertical midpoint.</li>
+		  			<li>The element's opacity descreases as it retreats from the viewport's vertical midpoint.</li>
+		  		</ul>
+		  		<div class="code-wrap example__code-wrap">
+			  		<pre class="language-js"><code class="code">import scrollTracker from "DEGJS/scrollTracker";
+import eventAggregator from "DEGJS/eventAggregator";
+
+eventAggregator.subscribe('scrollTracker.elementScroll', 
+	onElementScroll);
+
+let elToTrack = document.querySelector('#example3-tracked-el');
+let scrollTrackerInst = scrollTracker();
+
+scrollTrackerInst.trackElement(elToTrack,
+	{
+		publishScrollEvents: "inViewportOnly"
+	}
+);
+
+function onElementScroll(e) {
+	let ratio = e.rect.top / document.documentElement.clientHeight;
+	let opacity = ratio > .5 ? 1 - ratio : ratio * 2;
+	e.element.style.opacity = opacity;
+}
+</code></pre>
+				</div>
+				<p>Now, scroll down the page to bring the tracked element into the viewport.</p>
+		  	</div>
+
+		  	<div class="tracked-el tracked-el--invisible" id="example3-tracked-el" data-example-index="3">Tracked element</div>
+
+	</main>
+  	
+  	<script src="js/polyfills/object-assign.js"></script>
+  	<script src="js/main.js"></script>
+
+  </body>
+</html>

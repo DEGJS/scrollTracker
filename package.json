@@ -1,0 +1,36 @@
+{
+    "name": "scrollTracker",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [
+        "DEGJS",
+        "scrollTracker"
+    ],
+    "author": {
+        "name": "Ryan Heap",
+        "email": "heaper@gmail.com"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DEGJS/scrollTracker.git"
+    },
+    "bugs": "https://github.com/DEGJS/scrollTracker/issues",
+    "devDependencies": {
+        "jspm": "^0.16.51"
+    },
+    "scripts": {
+        "build-demo": "./build-demo.sh"
+    },
+    "jspm": {
+        "registry": "jspm",
+        "format": "es6",
+        "main": "scrollTracker.js",
+        "directories": {
+            "lib": "src"
+        },
+        "dependencies": {
+             "DEGJS/eventAggregator": "github:DEGJS/eventAggregator@^1.0.2"
+        }
+    }
+}
