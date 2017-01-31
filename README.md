@@ -1,6 +1,9 @@
 # ScrollTracker
 ScrollTracker tracks one or more DOM elements in relation to the viewport as the user scrolls within a web page. Events are fired when these elements enter and exit the viewport (and, optionally, whenever a scroll event occurs). You can subscribe to these events in order to perform actions based on an element's position relative to the viewport.
 
+## Demo
+You can view a demo of ScrollTracker [here](http://degjs.github.io/scrollTracker/).
+
 ## Install
 ScrollTracker is an ES6 module. Consequently, you'll need an ES6 transpiler ([Babel](https://babeljs.io) is a nice one) and a module loader ([SystemJS](https://github.com/systemjs/systemjs) will do the job) as part of your Javascript workflow.
 
