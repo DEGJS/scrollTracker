@@ -1,6 +1,8 @@
 # ScrollTracker
 ScrollTracker tracks one or more DOM elements in relation to the viewport as the user scrolls within a web page. Events are fired when these elements enter and exit the viewport (and, optionally, whenever a scroll event occurs). You can subscribe to these events in order to perform actions based on an element's position relative to the viewport.
 
+**THIS REPOSITORY IS NO LONGER MAINTAINED**
+
 ## Demo
 You can view a demo of ScrollTracker [here](http://degjs.github.io/scrollTracker/).
 
